@@ -238,7 +238,7 @@
   <style>
     :root {
       --primary-gradient: var(--primary-color);
-      --chat-height: 200px;
+      --chat-height: 300px;
       --header-height: 56px;
       --border-radius: 16px;
     }
@@ -340,11 +340,11 @@
     /* Chatbot fixed at the bottom */
     #chatbot-popup {
       position: fixed;
-      left: 0;
-      right: 0;
+      left: 50%;
+      right: translateX(-50%);
       bottom: 0;
 
-      width: 100%;
+      width: 200px;
       height: var(--chat-height);
 
       background: white;
