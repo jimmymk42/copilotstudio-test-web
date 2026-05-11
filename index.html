@@ -121,18 +121,7 @@
         .split("=")[1];
       const regionalChannelSettingsURL = `${environmentEndPoint}/powervirtualagents/regionalchannelsettings?api-version=${apiVersion}`;
 
-      function showChat() {
-        const popup = document.getElementById("chatbot-popup");
-        const openButton = document.getElementById("open-chat");
-        popup.classList.add("visible");
-        openButton.classList.add("hidden");
-      }
-
-      function hideChat() {
-        const popup = document.getElementById("chatbot-popup");
-        const openButton = document.getElementById("open-chat");
-        popup.classList.remove("visible");
-        openButton.classList.remove("hidden");
+openButton.classList.remove("hidden");
       }
 
       function createCustomStore() {
@@ -250,147 +239,24 @@
       background-color: #f3f4f6;
     }
     #chatbot-popup {
-      display: none;
       position: fixed;
-      bottom: 32px;
-      right: 32px;
-      width: var(--chat-width);
-      height: var(--chat-height);
-      background: white;
-      border-radius: var(--border-radius);
-      box-shadow: 0 18px 40px -5px rgba(0, 0, 0, 0.2),
-        0 15px 20px -5px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      opacity: 0;
-      transform-origin: bottom right;
-      transform: scale(0.95);
-      transition: all var(--transition-speed) ease-in-out;
-      z-index: 999;
-    }
-    #chatbot-popup.visible {
-      display: block;
-      opacity: 1;
-      transform: scale(1);
-    }
-    #chatbot-header {
-      background: var(--primary-color);
-      padding: 16px 20px;
-      height: var(--header-height);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--header-textColor);
-    }
-    .header-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 16px;
-      font-weight: 500;
-    }
-    .header-buttons {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-    .icon-button {
-      background: none;
-      border: none;
-      color: var(--header-textColor);
-      cursor: pointer;
-      padding: 8px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s ease;
-    }
-    .icon-button:hover {
-      color: var(--header-textColor);
-      background: rgba(255, 255, 255, 0.1);
-    }
-    .icon-button:focus {
-      outline: 2px solid rgba(255, 255, 255, 0.5);
-      outline-offset: 2px;
-    }
-    #webchat {
-      height: calc(100% - var(--header-height));
-      background-color: #f9fafb;
-      position: relative;
-    }
-    .webchat-overlay {
-      position: absolute;
-      top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(255, 255, 255, 0.85);
-      pointer-events: none;
-      z-index: 1;
-    }
-    #webchat > div {
-      position: relative;
-      z-index: 2;
-    }
-    #webchat .webchat__basic-transcript__content {
-      white-space: pre-wrap !important;
-      word-break: break-word !important;
-    }
-    #webchat .webchat__bubble__content {
-      padding: 8px 12px !important;
-    }
-    #webchat .webchat__bubble {
-      max-width: 85% !important;
-      margin: 8px !important;
-    }
-    #webchat .webchat__basic-transcript__content ul,
-    #webchat .webchat__basic-transcript__content ol,
-    #webchat .webchat__bubble__content ul,
-    #webchat .webchat__bubble__content ol {
-      padding-left: 24px !important;
-      margin: 8px 0 !important;
-      list-style-position: outside !important;
-    }
-    #webchat .webchat__basic-transcript__content li,
-    #webchat .webchat__bubble__content li {
-      margin: 4px 0 !important;
-      padding-left: 4px !important;
-    }
-    #open-chat {
-      position: fixed;
-      bottom: 32px;
-      right: 32px;
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: var(--primary-gradient);
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      transition: all var(--transition-speed) ease-in-out;
-      z-index: 998;
-    }
-    #open-chat.hidden {
-      opacity: 0;
-      transform: scale(0.95) translateY(10px);
-      pointer-events: none;
-    }
-    #open-chat:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    }
-    #open-chat:focus {
-      outline: 3px solid rgba(79, 70, 229, 0.5);
-      outline-offset: 2px;
-    }
-    #open-chat svg {
-      width: 28px;
-      height: 28px;
-      color: white;
-      transition: transform 0.2s ease;
+    
+      width: 100%;
+      height: 420px;
+    
+      background: white;
+      border-radius: 16px 16px 0 0;
+      box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.15);
+    
+      overflow: hidden;
+      z-index: 999;
+    
+      display: block;
+      opacity: 1;
+      transform: none;
     }
     .main-content {
       max-width: 1200px;
@@ -524,12 +390,6 @@
         <span>Contoso Assistant</span>
       </div>
       <div class="header-buttons">
-        <button
-          class="icon-button"
-          id="restart-button"
-          onclick="restartConversation()"
-          aria-label="Restart Conversation"
-        >
           <svg
             width="20"
             height="20"
@@ -572,11 +432,6 @@
     </div>
     <div id="webchat" role="main"></div>
   </div>
-  <button
-    id="open-chat"
-    onclick="showChat()"
-    aria-label="Open Chat Assistant"
-  >
     <svg
       viewBox="0 0 24 24"
       fill="none"
