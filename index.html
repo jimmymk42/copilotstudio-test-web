@@ -20,35 +20,21 @@
 
 <body>
   <h1>Hello, this is my test website</h1>
-
-  <div id="webchat" role="main"></div>
+  <div id="webchat"></div>
 
   <script>
-    // Replace this with YOUR server-side token endpoint.
-    // Do not put your Direct Line secret directly in this HTML file.
-    const tokenEndpoint = "https://default892010ca3dc94c63a4d20f8d39e9b4.05.environment.api.powerplatform.com/copilotstudio/dataverse-backed/authenticated/bots/crca1_clientDataInsightsAdvisor/conversations?api-version=2022-03-01-preview";
-
-    const styleOptions = {
-      hideSendBox: true,
-      disableFileUpload: true
-    };
-
-    async function startCopilot() {
-      const response = await fetch(tokenEndpoint);
-      const conversationInfo = await response.json();
-
-      window.WebChat.renderWebChat(
-        {
-          directLine: window.WebChat.createDirectLine({
-            token: conversationInfo.token
-          }),
-          styleOptions
-        },
-        document.getElementById("webchat")
-      );
-    }
-
-    startCopilot();
+    window.WebChat.renderWebChat(
+      {
+        directLine: window.WebChat.createDirectLine({
+          secret: "FNYTX5NGDThUz0ewdYErHJZrtv7ldCJu7ZZsY7hxmgnhrlRi8616JQQJ99CEAC3pKaRAArohAAABAZBS3mfk.CcHmSzjUWDfGY14655SYrfhyccmKa3ud3x53Jp7ZuaGwN61qEkgnJQQJ99CEAC3pKaRAArohAAABAZBS3hLW"
+        }),
+        styleOptions: {
+          hideSendBox: true,
+          disableFileUpload: true
+        }
+      },
+      document.getElementById("webchat")
+    );
   </script>
 </body>
 </html>
