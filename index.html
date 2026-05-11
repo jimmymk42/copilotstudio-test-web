@@ -20,21 +20,35 @@
 
 <body>
   <h1>Hello, this is my test website</h1>
-  <div id="webchat"></div>
+
+  <div id="webchat" role="main"></div>
 
   <script>
-    window.WebChat.renderWebChat(
-      {
-        directLine: window.WebChat.createDirectLine({
-          secret: ""
-        }),
-        styleOptions: {
-          hideSendBox: true,
-          disableFileUpload: true
-        }
-      },
-      document.getElementById("webchat")
-    );
+    // Replace this with YOUR server-side token endpoint.
+    // Do not put your Direct Line secret directly in this HTML file.
+    const tokenEndpoint = "https://default892010ca3dc94c63a4d20f8d39e9b4.05.environment.api.powerplatform.com/powervirtualagents/botsbyschema/crca1_clientDataInsightsAdvisor/directline/token?api-version=2022-03-01-preview";
+
+    const styleOptions = {
+      hideSendBox: true,
+      disableFileUpload: true
+    };
+
+    async function startCopilot() {
+      const response = await fetch(tokenEndpoint);
+      const conversationInfo = await response.json();
+
+      window.WebChat.renderWebChat(
+        {
+          directLine: window.WebChat.createDirectLine({
+            token: conversationInfo.token
+          }),
+          styleOptions
+        },
+        document.getElementById("webchat")
+      );
+    }
+
+    startCopilot();
   </script>
 </body>
 </html>
